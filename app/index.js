@@ -1,9 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
-import { App } from './containers/App'
+import { AppContainer } from './containers/App'
+import { store } from './setupStore'
+
+const mountNode = document.getElementById('app')
 
 ReactDOM.render(
-  <App compiler="TypeScript" framework="React" />,
-  document.getElementById('app')
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
+  mountNode
 )
+
+if (module.hot) {
+  module.hot.accept('containers/App', () => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>,
+      mountNode
+    )
+  })
+}

@@ -1,0 +1,2 @@
+export const INC_COUNTER = 'INCREASE_COUNTER'
+export const DEC_COUNTER = 'DECREASE_COUNTER'
