@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { HashedModuleIdsPlugin } = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
-// const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 module.exports = require('./webpack.base.config')({
   mode: 'production',
