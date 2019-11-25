@@ -18,21 +18,12 @@ module.exports = options => ({
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
-        loader: 'ts-loader'
-      },
-      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: options.babelQuery
         }
-      },
-      {
-        test: /\.js$/,
-        loader: 'source-map-loader',
-        enforce: 'pre'
       }
     ]
   },
@@ -40,7 +31,7 @@ module.exports = options => ({
 
   resolve: {
     modules: ['node_modules', 'app'],
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
     mainFields: ['browser', 'jsnext:main', 'main']
   },
 

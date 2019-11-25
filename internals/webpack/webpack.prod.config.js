@@ -8,7 +8,7 @@ module.exports = require('./webpack.base.config')({
   mode: 'production',
 
   entry: [
-    path.join(process.cwd(), 'app/index.tsx') // Start with js/app.js
+    path.join(process.cwd(), 'app/index.js') // Start with js/app.js
   ],
 
   output: {
