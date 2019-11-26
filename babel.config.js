@@ -1,12 +1,12 @@
 module.exports = {
-  presets: ['@babel/preset-react'],
+  presets: ['@babel/preset-env', '@babel/preset-react'],
   plugins: [
-    '@babel/plugin-proposal-class-properties',
     [
       'module-resolver',
       {
         root: ['./'],
         alias: {
+          app: './app',
           utils: './app/utils',
           components: './app/components',
           containers: './app/containers',
