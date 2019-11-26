@@ -1,4 +1,5 @@
-import { combineReducers, compose, createStore } from 'redux'
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
+import { loggingMiddleware } from 'utils/loggingMiddleware'
 
 const initialState = {}
 
@@ -12,15 +13,21 @@ export const createReducer = (injectedReducers = {}) => {
 }
 
 const setupStore = initialState => {
-  let composeEnhancers = compose
+  let composeEnhancers
 
   if (process.env.NODE_ENV === 'development' && typeof window === 'object') {
     composeEnhancers =
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
   }
 
-  const store = createStore(createReducer(), initialState, composeEnhancers())
+  if (process.env.NODE_ENV !== 'development') console.log = function() {}
+
+  composeEnhancers = composeEnhancers
+    ? compose(applyMiddleware(loggingMiddleware), composeEnhancers)
+    : compose(applyMiddleware(loggingMiddleware))
+
+  const store = createStore(createReducer(), initialState, composeEnhancers)
 
   store.injectedReducers = {}
 

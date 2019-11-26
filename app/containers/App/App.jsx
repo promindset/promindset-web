@@ -16,13 +16,14 @@ const App = ({ incNumber, decNumber, counter }) => {
   return (
     <React.Fragment>
       <H1>Promindset Inc.</H1>
+      <hr style={{ width: '50%', margin: 'auto' }} />
       <h2 style={{ textAlign: 'center' }}>{counter}</h2>
       <div style={{ margin: 'auto', width: 'max-content' }}>
-        <button className="Increment" onClick={() => incNumber(2)}>
-          INC NUM
-        </button>
-        <button className="Decrement" onClick={() => decNumber(1)}>
+        <button style={{ margin: '25px' }} onClick={() => decNumber(1)}>
           DEC NUM
+        </button>
+        <button style={{ margin: '25px' }} onClick={() => incNumber(1)}>
+          INC NUM
         </button>
       </div>
       <GlobalStyle />
