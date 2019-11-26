@@ -1,7 +1,7 @@
 const express = require('express')
 const logger = require('./logger')
 const process = require('process')
-const setup = require('./setupMiddleware')
+const setup = require('./serverMiddleware')
 const devMiddleWare = require('../internals/webpack/webpack.dev.config')
 
 const port = parseInt(process.argv[2]) || 3000

@@ -1,6 +1,6 @@
 export const ActionNameFactory = (moduleName, componentName) => {
   const prefix = `${moduleName.toLowerCase()}::${
-    componentName ? `${componentName.toLowerCase()}::` : ''
+    componentName ? `${componentName.toUpperCase()}::` : ''
   }`
 
   const actionNameFactory = actionName => `${prefix}${actionName.toUpperCase()}`
