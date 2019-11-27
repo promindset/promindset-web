@@ -1,14 +1,17 @@
 import React from 'react'
-import { store } from 'app/setupStore'
+// import { store } from 'app/setupStore'
+import { setupStore } from 'app/__mocks__/setupStore'
 import { Provider } from 'react-redux'
 import TestRenderer from 'react-test-renderer'
 import { CounterContainer } from '../index'
 import { INC_COUNTER, DEC_COUNTER } from '../constants'
 
 describe('Counter Container', () => {
+  let store
   let component
 
   beforeEach(() => {
+    store = setupStore()
     store.dispatch = jest.fn()
     component = TestRenderer.create(
       <Provider store={store}>

@@ -8,7 +8,7 @@ import { Switch, Route } from 'react-router-dom'
 
 export const App = () => (
   <>
-    {/* Here we can a header or even use react-helmet if needed */}
+    {/* Here we can put a header or even use react-helmet if needed */}
     <H1>Promindset Inc.</H1>
     <Switch>
       <Route exact path="/" component={CounterContainer} />
