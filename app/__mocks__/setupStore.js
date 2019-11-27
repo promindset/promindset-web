@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable prefer-template */
 import { applyMiddleware } from 'redux'
 import isPlainObject from 'lodash.isplainobject'
 import { createBrowserHistory } from 'history'
@@ -8,7 +6,7 @@ import { loggingMiddleware } from 'utils/loggingMiddleware'
 
 const isFunction = arg => typeof arg === 'function'
 
-const baseSetupStore = middlewares => getState =>
+const setupStore = middlewares => getState =>
   applyMiddleware(...middlewares)(() => {
     let actions = []
     let listeners = []
@@ -32,10 +30,9 @@ const baseSetupStore = middlewares => getState =>
 
         if (typeof action.type === 'undefined') {
           throw new Error(
-            'Actions may not have an undefined "type" property. ' +
+            `${'Actions may not have an undefined "type" property. ' +
               'Have you misspelled a constant? ' +
-              'Action: ' +
-              JSON.stringify(action)
+              'Action: '}${JSON.stringify(action)}`
           )
         }
 
@@ -77,7 +74,7 @@ const baseSetupStore = middlewares => getState =>
     return self
   })
 
-export const setupStore = baseSetupStore([
+export const setupMockStore = setupStore([
   loggingMiddleware,
   routerMiddleware(createBrowserHistory())
 ])({})

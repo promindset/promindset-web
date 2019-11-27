@@ -1,6 +1,6 @@
 import React from 'react'
 // import { store } from 'app/setupStore'
-import { setupStore } from 'app/__mocks__/setupStore'
+import { setupMockStore as setupStore } from 'app/__mocks__/setupStore'
 import { Provider } from 'react-redux'
 import TestRenderer from 'react-test-renderer'
 import { CounterContainer } from '../index'
