@@ -41,7 +41,6 @@ const setupStore = middlewares => getState =>
         for (let i = 0; i < listeners.length; i++) {
           listeners[i]()
         }
-
         return action
       },
 
@@ -74,7 +73,7 @@ const setupStore = middlewares => getState =>
     return self
   })
 
-export const setupMockStore = setupStore([
-  loggingMiddleware,
-  routerMiddleware(createBrowserHistory())
-])({})
+export const setupMockStore = (initialState = {}) =>
+  setupStore([loggingMiddleware, routerMiddleware(createBrowserHistory())])(
+    initialState
+  )()

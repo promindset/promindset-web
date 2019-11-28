@@ -3,7 +3,6 @@ import { loggingMiddleware } from 'utils/loggingMiddleware'
 import { createBrowserHistory } from 'history'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 
-const initialState = {}
 const history = createBrowserHistory()
 
 export const createReducer = (injectedReducers = {}) => {
@@ -16,7 +15,7 @@ export const createReducer = (injectedReducers = {}) => {
   return rootReducer
 }
 
-export const setupStore = initialState => {
+export const setupStore = (initialState = {}) => {
   const composeEnhancers =
     (process.env.NODE_ENV != 'production' &&
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
@@ -52,4 +51,4 @@ export const setupStore = initialState => {
   return store
 }
 
-export const store = setupStore(initialState)
+export const store = (initialState = {}) => setupStore(initialState)

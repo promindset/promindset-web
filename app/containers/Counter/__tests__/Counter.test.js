@@ -1,18 +1,19 @@
 import React from 'react'
-// import { store } from 'app/setupStore'
-import { setupMockStore as setupStore } from 'app/__mocks__/setupStore'
 import { Provider } from 'react-redux'
 import TestRenderer from 'react-test-renderer'
 import { CounterContainer } from '../index'
-import { INC_COUNTER, DEC_COUNTER } from '../constants'
+// import { INC_COUNTER, DEC_COUNTER } from '../constants'
+// import { setupMockStore as setupStore } from 'app/__mocks__/setupStore'
+import { store as mockStore } from 'app/setupStore'
 
 describe('Counter Container', () => {
+  // const store = store
   let store
   let component
 
   beforeEach(() => {
-    store = setupStore()
-    store.dispatch = jest.fn()
+    store = mockStore()
+    // store.dispatch = jest.fn(() => console.log(store.getState()))
     component = TestRenderer.create(
       <Provider store={store}>
         <CounterContainer />
@@ -25,32 +26,29 @@ describe('Counter Container', () => {
   })
 
   test('should dispatch increment action on inc button click', () => {
-    TestRenderer.act(() =>
-      component.root
-        .findAllByType('button')
-        .find(x => x.props.children == ['INC NUM'])
-        .props.onClick()
-    )
-    expect(store.dispatch).toHaveBeenCalledTimes(1)
+    component = component.getInstance()
+    component.root.findByProps({ children: 'INC NUM' }).props.onClick()
+    //   component.root.findByProps({ children: 'INC NUM' }).props.onClick()
+    // })
+    // component.root.findByProps({ children: 'INC NUM' }).props.onClick()
+    console.log(store.getState())
+    // expect(store.dispatch).toHaveBeenCalledTimes(1)
 
-    expect(store.dispatch).toHaveBeenCalledWith({
-      type: INC_COUNTER,
-      payload: { amount: 1 }
-    })
+    // expect(store.dispatch).toHaveBeenCalledWith({
+    //   type: INC_COUNTER,
+    //   payload: { amount: 1 }
+    // })
   })
 
   test('should dispatch decrement action on dec button click', () => {
     TestRenderer.act(() =>
-      component.root
-        .findAllByType('button')
-        .find(x => x.props.children == ['DEC NUM'])
-        .props.onClick()
+      component.root.findByProps({ children: 'DEC NUM' }).props.onClick()
     )
-    expect(store.dispatch).toHaveBeenCalledTimes(1)
+    // expect(store.dispatch).toHaveBeenCalledTimes(1)
 
-    expect(store.dispatch).toHaveBeenCalledWith({
-      type: DEC_COUNTER,
-      payload: { amount: 1 }
-    })
+    // expect(store.dispatch).toHaveBeenCalledWith({
+    //   type: DEC_COUNTER,
+    //   payload: { amount: 1 }
+    // })
   })
 })

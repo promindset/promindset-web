@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "build": "webpack --config internals/webpack/webpack.prod.config.js -p --progress",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "repository": {
     "type": "git",

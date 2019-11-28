@@ -4,7 +4,7 @@ describe('configureStore', () => {
   let store
 
   beforeAll(() => {
-    store = setupStore({})
+    store = setupStore()
   })
 
   describe('injectedReducers', () => {
