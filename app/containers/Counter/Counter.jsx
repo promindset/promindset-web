@@ -1,27 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { Styled } from './Styled'
 import { counterReducer } from './reducer'
-import { useInjectReducer } from 'utils/injectReducer'
+import { useInjectReducer, useInterval } from 'utils/CustomHooks'
 
-export const Counter = ({ incNumber, decNumber, counter }) => {
+export function Counter({ incNumber, decNumber, counter }) {
   useInjectReducer({
     key: 'counter',
     reducer: counterReducer
   })
 
+  const onDecrementNum = () => decNumber(1)
+  const onIncrementNum = () => incNumber(1)
+
+  const [incrNumber, startIncreasing] = useState(false)
+  const [decrNumber, startDecreasing] = useState(false)
+
+  useInterval(onIncrementNum, incrNumber ? 50 : null)
+  useInterval(onDecrementNum, decrNumber ? 50 : null)
+
   return (
-    <>
-      <hr style={{ width: '50%', margin: 'auto' }} />
-      <h2 style={{ textAlign: 'center' }}>{counter}</h2>
-      <div style={{ margin: 'auto', width: 'max-content' }}>
-        <button style={{ margin: '25px' }} onClick={() => decNumber(1)}>
+    <Styled>
+      <hr />
+      <h2>{counter}</h2>
+      <div>
+        <button
+          onMouseDown={() => startDecreasing(true)}
+          onMouseUp={() => startDecreasing(false)}
+        >
           DEC NUM
         </button>
-        <button style={{ margin: '25px' }} onClick={() => incNumber(1)}>
+        <button
+          onMouseDown={() => startIncreasing(true)}
+          onMouseUp={() => startIncreasing(false)}
+        >
           INC NUM
         </button>
       </div>
-    </>
+    </Styled>
   )
 }
 

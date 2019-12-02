@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "build": "webpack --config internals/webpack/webpack.prod.config.js -p --progress",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "@storybook/react": "^5.2.8",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",

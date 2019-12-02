@@ -1,8 +1,15 @@
+/*
+
+use Inject Reducer helps in injecting reducers into the store
+from within the component itself instead of having to import each manually.
+
+*/
+
 import React from 'react'
 import invariant from 'invariant'
+import { createReducer } from 'app/setupStore'
 import { ReactReduxContext } from 'react-redux'
 import { isString, isEmpty, isFunction } from 'lodash'
-import { createReducer } from '../setupStore'
 
 const injectReducerFactory = store => (key, reducer) => {
   invariant(
